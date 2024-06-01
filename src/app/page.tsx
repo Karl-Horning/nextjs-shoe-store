@@ -22,8 +22,8 @@ export default async function Home() {
     const data = await getData();
 
     return (
-        <main className="container mx-auto min-w-[500px]">
-            <section className="grid grid-cols-2 justify-items-center gap-4 md:grid-cols-3">
+        <main className="container mx-auto min-w-[375px]">
+            <section className="grid sm:grid-cols-2 justify-items-center gap-4 md:grid-cols-3">
                 {data.map((item) => (
                     <ShoeCard
                         key={item.ShoeId}
