@@ -1,6 +1,8 @@
+import { Button } from "@nextui-org/react";
 import fs from "fs";
 import Image from "next/image";
 import path from "path";
+import { BiCartAdd } from "react-icons/bi";
 
 /**
  * Represents a shoe.
@@ -99,17 +101,19 @@ export default async function page({ params }: PageProps) {
                     <h2 className="mb-2 text-2xl">
                         {shoe.Brand} {shoe.Model}
                     </h2>
-                    <p className="mb-2">{shoe.Price}</p>
+                    <p className="mb-2">£{shoe.Price}</p>
                 </div>
 
-                <div id="shoe-size-container" className="mb-10">
-                    <p className="mb-8 text-center font-bold">Select size:</p>
-
-                    <div className="my-4 flex justify-center">
+                <p className="mb-8 font-bold">Select size:</p>
+                <div
+                    id="shoe-size-container"
+                    className="mb-10 align-bottom md:flex md:justify-between"
+                >
+                    <div className="mb-10 flex md:justify-center">
                         {shoe.AvailableSizes.map((size) => (
                             <div key={size}>
                                 <input
-                                    className="peer hidden"
+                                    className="peer top-4 hidden"
                                     id={size}
                                     name="shoe-size"
                                     required
@@ -117,7 +121,7 @@ export default async function page({ params }: PageProps) {
                                     value={size}
                                 />
                                 <label
-                                    className="m-2 cursor-pointer rounded-full border border-gray-500 p-4 peer-checked:border-blue-500 peer-checked:bg-blue-100"
+                                    className="mr-2 cursor-pointer rounded-lg border border-gray-500 p-4 peer-checked:border-blue-500 peer-checked:bg-blue-100"
                                     htmlFor={size}
                                 >
                                     {size}
@@ -125,18 +129,17 @@ export default async function page({ params }: PageProps) {
                             </div>
                         ))}
                     </div>
-                </div>
 
-                <div
-                    id="shoe-buy-container"
-                    className="mb-5 flex justify-center"
-                >
-                    <button
-                        className="rounded-full bg-red-600 px-20 py-4 text-white hover:bg-red-800"
+                    <Button
+                        className="w-full md:w-auto md:mt-[-16px]"
+                        color="danger"
+                        endContent={<BiCartAdd />}
+                        radius="lg"
+                        size="lg"
                         type="submit"
                     >
                         Add to cart
-                    </button>
+                    </Button>
                 </div>
             </form>
         </section>
