@@ -1,5 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
+import { Card, CardBody, CardFooter } from "@nextui-org/card";
+import { Image } from "@nextui-org/react";
 
 /**
  * Props for the ShoeCard component.
@@ -42,18 +43,32 @@ export default function ShoeCard({
     imgSrc,
 }: ShoeCardProps) {
     return (
-        <div className="mb-8">
-            <Link href={`/product/${id}`}>
-                <Image
-                    alt={imgAlt}
-                    className="mb-2 rounded-3xl"
-                    height={400}
-                    src={`/${imgSrc}`}
-                    width={400}
-                />
-                <h2 className="mb-2 text-xl text-gray-800">{title}</h2>
-                <p className="mb-2 text-gray-500">{brand}</p>
-                <p className="mb-2 text-gray-800">{price}</p>
+        <div className="mb-8 w-full">
+            <Link href={`/product/${id}`} className="w-full">
+                <Card shadow="sm" key={id} fullWidth isPressable>
+                    <CardBody className="overflow-visible p-0">
+                        <Image
+                            alt={imgAlt}
+                            className="w-full object-cover "
+                            radius="lg"
+                            shadow="sm"
+                            src={imgSrc}
+                            width="100%"
+                        />
+                    </CardBody>
+                    <CardFooter className="border-t-1 border-zinc-100/50 bg-white/30 text-gray-800 flex-initial">
+                        <div className="w-full">
+                            <p className="mb-1 text-sm font-bold">{title}</p>
+                            <div className="flex justify-between w-full">
+
+                            <p className="text-tiny">£{price}</p>
+                            <p className="text-tiny mb-1 text-gray-500">
+                                {brand}
+                            </p>
+                            </div>
+                        </div>
+                    </CardFooter>
+                </Card>
             </Link>
         </div>
     );
