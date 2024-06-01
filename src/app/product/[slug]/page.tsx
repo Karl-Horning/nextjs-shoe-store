@@ -1,27 +1,6 @@
 import { IoCartOutline } from "react-icons/io5";
 import { Button, Image } from "@nextui-org/react";
-import fs from "fs";
-import path from "path";
-
-/**
- * Represents a shoe.
- *
- * @typedef {Object} Shoe
- * @property {string} ShoeId - The unique identifier of the shoe.
- * @property {string} Brand - The brand of the shoe.
- * @property {string} Model - The model of the shoe.
- * @property {string} Price - The price of the shoe.
- * @property {string} Image - The image filename of the shoe.
- * @property {string[]} AvailableSizes - The available sizes of the shoe.
- */
-interface Shoe {
-    ShoeId: string;
-    Brand: string;
-    Model: string;
-    Price: string;
-    Image: string;
-    AvailableSizes: string[];
-}
+import { getShoeById } from "@/data/data";
 
 /**
  * Represents the page properties.
@@ -37,39 +16,14 @@ interface PageProps {
 }
 
 /**
- * Represents the data properties.
- *
- * @typedef {Object} DataProps
- * @property {string} slug - The slug of the shoe.
- */
-interface DataProps {
-    slug: string;
-}
-
-/**
- * Fetches the shoe data based on the provided slug.
- *
- * @param {DataProps} dataProps - The data properties containing the slug.
- * @returns {Promise<Shoe|undefined>} The shoe data or undefined if not found.
- */
-async function getData({ slug }: DataProps) {
-    const filePath = path.join(process.cwd(), "src", "data", "data.json");
-    const jsonData = fs.readFileSync(filePath, "utf8");
-    const data: Shoe[] = JSON.parse(jsonData);
-    const shoe: Shoe | undefined = data.find((shoe) => shoe.ShoeId === slug);
-
-    return shoe;
-}
-
-/**
  * The page component that displays the shoe details.
  *
  * @param {PageProps} pageProps - The page properties containing the params.
- * @returns {JSX.Element} The rendered page component.
+ * @returns {JSX.Element} - The rendered page component.
  */
 export default async function page({ params }: PageProps) {
     const { slug } = params;
-    const shoe = await getData({ slug });
+    const shoe = await getShoeById(slug);
 
     if (!shoe) {
         return <div>Shoe not found</div>;
