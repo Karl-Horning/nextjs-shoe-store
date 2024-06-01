@@ -1,4 +1,24 @@
-import path from "path";
+import { mockApiData } from "@/data/mockApi";
+
+export async function mockFetch(url: string): Promise<Response> {
+    // Simulate delay
+    await new Promise((resolve) => setTimeout(resolve, 500));
+
+    // Mocked response data
+    const responseData = {
+        status: 200,
+        data: mockApiData,
+    };
+
+    // Return a Promise with the mocked response
+    return new Promise((resolve, reject) => {
+        resolve({
+            ok: true,
+            status: responseData.status,
+            json: async () => responseData.data,
+        } as Response);
+    });
+}
 
 /**
  * Represents a shoe.
@@ -28,8 +48,7 @@ export interface Shoe {
 export async function getAllShoes(): Promise<Shoe[]> {
     try {
         // Fetch data using fetch API
-        const filePath = path.join(process.cwd(), "data.json");
-        const response = await fetch(filePath);
+        const response = await mockFetch("www.test.com/api/shoes");
 
         if (!response.ok) {
             throw new Error("Failed to fetch shoe data.");
