@@ -49,22 +49,23 @@ export default function ShoeCard({
                     <CardBody className="overflow-visible p-0">
                         <Image
                             alt={imgAlt}
-                            className="w-full object-cover "
+                            className="w-full object-cover"
                             radius="lg"
                             shadow="sm"
                             src={imgSrc}
                             width="100%"
                         />
                     </CardBody>
-                    <CardFooter className="border-t-1 border-zinc-100/50 bg-white/30 text-gray-800 flex-initial">
+                    <CardFooter className="border-t-1 flex-initial border-zinc-100/50 bg-white/30 text-gray-800">
                         <div className="w-full">
-                            <p className="mb-1 text-sm font-bold">{title}</p>
-                            <div className="flex justify-between w-full">
-
-                            <p className="text-tiny">£{price}</p>
-                            <p className="text-tiny mb-1 text-gray-500">
-                                {brand}
+                            <p className="mb-1 text-left text-sm font-bold">
+                                {title}
                             </p>
+                            <div className="flex w-full justify-between">
+                                <p className="text-tiny">£{price}</p>
+                                <p className="text-tiny mb-1 text-gray-500">
+                                    {brand}
+                                </p>
                             </div>
                         </div>
                     </CardFooter>

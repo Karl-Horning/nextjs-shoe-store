@@ -92,54 +92,51 @@ export default async function page({ params }: PageProps) {
             </div>
 
             <form className="container mx-auto">
-                <p className="mb-5 text-gray-500">{shoe.Brand}</p>
+                <div className="lg:flex lg:justify-between">
+                    <div id="shoe-info">
+                        <p className="mb-5 text-gray-500">{shoe.Brand}</p>
 
-                <div
-                    id="shoe-name-price-container"
-                    className="mb-5 md:flex md:justify-between md:text-2xl"
-                >
-                    <h2 className="mb-2 text-2xl">
-                        {shoe.Brand} {shoe.Model}
-                    </h2>
-                    <p className="mb-2">£{shoe.Price}</p>
-                </div>
-
-                <p className="mb-8 font-bold">Select size:</p>
-                <div
-                    id="shoe-size-container"
-                    className="mb-10 align-bottom md:flex md:justify-between"
-                >
-                    <div className="mb-10 flex md:justify-center">
-                        {shoe.AvailableSizes.map((size) => (
-                            <div key={size}>
-                                <input
-                                    className="peer top-4 hidden"
-                                    id={size}
-                                    name="shoe-size"
-                                    required
-                                    type="radio"
-                                    value={size}
-                                />
-                                <label
-                                    className="mr-2 cursor-pointer rounded-lg border border-gray-500 p-4 peer-checked:border-blue-500 peer-checked:bg-blue-100"
-                                    htmlFor={size}
-                                >
-                                    {size}
-                                </label>
-                            </div>
-                        ))}
+                        <h2 className="mb-5 text-4xl">
+                            {shoe.Brand} {shoe.Model}
+                        </h2>
+                        <p className="mb-5 text-xl">£{shoe.Price}</p>
                     </div>
 
-                    <Button
-                        className="w-full md:w-auto md:mt-[-16px]"
-                        color="danger"
-                        endContent={<BiCartAdd />}
-                        radius="lg"
-                        size="lg"
-                        type="submit"
-                    >
-                        Add to cart
-                    </Button>
+                    <div id="buying-options">
+                        <p className="mb-8 font-bold">Select size:</p>
+
+                        <div className="mb-10 flex">
+                            {shoe.AvailableSizes.map((size) => (
+                                <div key={size}>
+                                    <input
+                                        className="peer top-4 hidden"
+                                        id={size}
+                                        name="shoe-size"
+                                        required
+                                        type="radio"
+                                        value={size}
+                                    />
+                                    <label
+                                        className="mr-2 cursor-pointer rounded-lg border border-gray-500 p-4 peer-checked:border-blue-500 peer-checked:bg-blue-100"
+                                        htmlFor={size}
+                                    >
+                                        {size}
+                                    </label>
+                                </div>
+                            ))}
+                        </div>
+
+                        <Button
+                            className="mb-20 w-full"
+                            color="danger"
+                            endContent={<BiCartAdd />}
+                            radius="lg"
+                            size="lg"
+                            type="submit"
+                        >
+                            Add to cart
+                        </Button>
+                    </div>
                 </div>
             </form>
         </section>
