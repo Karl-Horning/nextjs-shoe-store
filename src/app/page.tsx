@@ -1,3 +1,4 @@
+import Header from "@/components/Header/Header";
 import ShoeCard from "@/components/ShoeCard/ShoeCard";
 import fs from "fs";
 import path from "path";
@@ -23,11 +24,7 @@ export default async function Home() {
 
     return (
         <main>
-            <header className="container mx-auto my-40 min-w-[375px]">
-                <h1 className="mb-10 text-center text-8xl font-bold">
-                    Trainers without the sole-searching
-                </h1>
-            </header>
+            <Header />
 
             <div className="container mx-auto min-w-[375px]">
                 <section className="grid justify-items-center gap-4 sm:grid-cols-2 md:grid-cols-3">
