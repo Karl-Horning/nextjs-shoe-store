@@ -22,20 +22,28 @@ export default async function Home() {
     const data = await getData();
 
     return (
-        <main className="container mx-auto min-w-[375px]">
-            <section className="grid sm:grid-cols-2 justify-items-center gap-4 md:grid-cols-3">
-                {data.map((item) => (
-                    <ShoeCard
-                        key={item.ShoeId}
-                        id={item.ShoeId}
-                        title={`${item.Brand} ${item.Model}`}
-                        brand={item.Brand}
-                        price={item.Price}
-                        imgAlt={`${item.Brand} ${item.Model}`}
-                        imgSrc={item.Image}
-                    />
-                ))}
-            </section>
+        <main>
+            <header className="container mx-auto my-40 min-w-[375px]">
+                <h1 className="mb-10 text-center text-8xl font-bold">
+                    Trainers without the sole-searching
+                </h1>
+            </header>
+
+            <div className="container mx-auto min-w-[375px]">
+                <section className="grid justify-items-center gap-4 sm:grid-cols-2 md:grid-cols-3">
+                    {data.map((item) => (
+                        <ShoeCard
+                            key={item.ShoeId}
+                            id={item.ShoeId}
+                            title={`${item.Brand} ${item.Model}`}
+                            brand={item.Brand}
+                            price={item.Price}
+                            imgAlt={`${item.Brand} ${item.Model}`}
+                            imgSrc={item.Image}
+                        />
+                    ))}
+                </section>
+            </div>
         </main>
     );
 }

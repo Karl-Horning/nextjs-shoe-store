@@ -1,6 +1,5 @@
-import { IoCartOutline, IoCaretBackOutline } from "react-icons/io5";
+import { IoCartOutline } from "react-icons/io5";
 import { Button, Image } from "@nextui-org/react";
-import Link from "next/link";
 import fs from "fs";
 import path from "path";
 
@@ -79,23 +78,6 @@ export default async function page({ params }: PageProps) {
     return (
         <main className="text-gray-800">
             <section id="header-container" className="w-full">
-                <div className="absolute top-4 z-50 w-full transform">
-                    <div className="flex items-center justify-between">
-                        <Link
-                            className="pl-4 text-4xl hover:text-gray-600"
-                            href="/"
-                        >
-                            <IoCaretBackOutline />
-                        </Link>
-                        <h1 className="text-2xl font-bold">Details</h1>
-                        <Link
-                            className="pr-4 text-4xl hover:text-gray-600"
-                            href="/"
-                        >
-                            <IoCartOutline />
-                        </Link>
-                    </div>
-                </div>
                 <Image
                     alt={`${shoe.Brand} ${shoe.Model}`}
                     className="mb-5 w-full"
