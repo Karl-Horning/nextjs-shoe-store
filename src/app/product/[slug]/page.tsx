@@ -82,6 +82,7 @@ export default async function page({ params }: PageProps) {
                     alt={`${shoe.Brand} ${shoe.Model}`}
                     className="mb-5 w-full"
                     height={"100%"}
+                    radius="none"
                     src={`/${shoe.Image}`}
                     width={"100%"}
                 />
@@ -113,7 +114,7 @@ export default async function page({ params }: PageProps) {
                                         value={size}
                                     />
                                     <label
-                                        className="mr-2 cursor-pointer rounded-lg border border-gray-500 p-4 peer-checked:border-blue-500 peer-checked:bg-blue-100"
+                                        className="mr-2 cursor-pointer rounded-lg border border-gray-500 p-4 peer-checked:border-purple-500 peer-checked:bg-purple-100"
                                         htmlFor={size}
                                     >
                                         {size}
@@ -124,7 +125,7 @@ export default async function page({ params }: PageProps) {
 
                         <Button
                             className="mb-20 w-full"
-                            color="danger"
+                            color="secondary"
                             endContent={<IoCartOutline />}
                             radius="lg"
                             size="lg"
