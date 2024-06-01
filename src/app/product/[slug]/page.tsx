@@ -1,8 +1,8 @@
-import { Button } from "@nextui-org/react";
+import { IoCartOutline, IoCaretBackOutline } from "react-icons/io5";
+import { Button, Image } from "@nextui-org/react";
+import Link from "next/link";
 import fs from "fs";
-import Image from "next/image";
 import path from "path";
-import { BiCartAdd } from "react-icons/bi";
 
 /**
  * Represents a shoe.
@@ -77,19 +77,33 @@ export default async function page({ params }: PageProps) {
     }
 
     return (
-        <section className="text-gray-800">
-            <div id="shoe-header-container">
-                <h1 className="absolute left-1/2 top-4 -translate-x-1/2 transform text-2xl font-bold">
-                    Details
-                </h1>
+        <main className="text-gray-800">
+            <section id="header-container" className="w-full">
+                <div className="absolute top-4 z-50 w-full transform">
+                    <div className="flex items-center justify-between">
+                        <Link
+                            className="pl-4 text-4xl hover:text-gray-600"
+                            href="/"
+                        >
+                            <IoCaretBackOutline />
+                        </Link>
+                        <h1 className="text-2xl font-bold">Details</h1>
+                        <Link
+                            className="pr-4 text-4xl hover:text-gray-600"
+                            href="/"
+                        >
+                            <IoCartOutline />
+                        </Link>
+                    </div>
+                </div>
                 <Image
                     alt={`${shoe.Brand} ${shoe.Model}`}
                     className="mb-5 w-full"
-                    height={500}
+                    height={"100%"}
                     src={`/${shoe.Image}`}
-                    width={500}
+                    width={"100%"}
                 />
-            </div>
+            </section>
 
             <form className="container mx-auto">
                 <div className="lg:flex lg:justify-between">
@@ -129,7 +143,7 @@ export default async function page({ params }: PageProps) {
                         <Button
                             className="mb-20 w-full"
                             color="danger"
-                            endContent={<BiCartAdd />}
+                            endContent={<IoCartOutline />}
                             radius="lg"
                             size="lg"
                             type="submit"
@@ -139,6 +153,6 @@ export default async function page({ params }: PageProps) {
                     </div>
                 </div>
             </form>
-        </section>
+        </main>
     );
 }
