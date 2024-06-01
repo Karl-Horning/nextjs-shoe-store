@@ -9,6 +9,7 @@ import {
     getMostExpensiveShoes,
     Shoe,
 } from "@/data/data";
+import { Select, SelectItem } from "@nextui-org/react";
 import ShoeCard from "@/components/ShoeCard/ShoeCard";
 import { Button } from "@nextui-org/react";
 
@@ -20,6 +21,8 @@ import { Button } from "@nextui-org/react";
 export default function ShoeCardList() {
     const [shoes, setShoes] = useState<Shoe[]>([]);
     const [brands, setBrands] = useState<string[]>([]);
+    const [selectedBrand, setSelectedBrand] = useState<string>("");
+    const [selectKey, setSelectKey] = useState<number>(0);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -48,13 +51,24 @@ export default function ShoeCardList() {
             case "featured-btn":
                 shoesFilter = await getMostExpensiveShoes();
                 break;
-            case "brand-btn":
-                shoesFilter = await getShoesByBrand('Nike');
-                break;
             default:
                 break;
         }
 
+        setSelectedBrand("");
+        setShoes(shoesFilter);
+
+        // Increment the select key to force re-render of the Select component
+        setSelectKey((prevKey) => prevKey + 1);
+    };
+
+    const handleBrandSelection: React.ChangeEventHandler<
+        HTMLSelectElement
+    > = async (event) => {
+        const selectedValue = event.target.value;
+        setSelectedBrand(selectedValue);
+
+        const shoesFilter: Shoe[] = await getShoesByBrand(selectedValue);
         setShoes(shoesFilter);
     };
 
@@ -100,18 +114,20 @@ export default function ShoeCardList() {
                     </Button>
                 </div>
 
-                <div className="flex items-center justify-center">
-                    <Button
-                        className="mb-5 w-full"
-                        color="secondary"
-                        id="brand-btn"
-                        onClick={handleButtonClick}
-                        size="lg"
-                        variant="light"
-                    >
-                        Nike
-                    </Button>
-                </div>
+                <Select
+                    className="w-full"
+                    key={selectKey}
+                    label="Filter by brand"
+                    onChange={handleBrandSelection}
+                    placeholder="All"
+                    value={selectedBrand}
+                >
+                    {brands.map((brand) => (
+                        <SelectItem key={brand} value={brand}>
+                            {brand}
+                        </SelectItem>
+                    ))}
+                </Select>
             </div>
 
             <div className="grid justify-items-center gap-4 sm:grid-cols-2 md:grid-cols-3">
