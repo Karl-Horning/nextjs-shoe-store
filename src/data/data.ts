@@ -1,4 +1,3 @@
-import { readFileSync } from "fs";
 import path from "path";
 
 /**
@@ -28,13 +27,18 @@ export interface Shoe {
  */
 export async function getAllShoes(): Promise<Shoe[]> {
     try {
-        const filePath = path.join(process.cwd(), "src", "data", "data.json");
-        const jsonData = readFileSync(filePath, "utf8");
-        const allShoes: Shoe[] = JSON.parse(jsonData);
-        return allShoes;
+        // Fetch data using fetch API
+        const filePath = path.join(process.cwd(), "data.json");
+        const response = await fetch(filePath);
+
+        if (!response.ok) {
+            throw new Error("Failed to fetch shoe data.");
+        }
+        const data: Shoe[] = await response.json();
+        return data;
     } catch (error) {
         console.error("Failed to fetch shoe data:", error);
-        throw new Error("Failed to fetch shoe data.");
+        throw error;
     }
 }
 
@@ -72,5 +76,56 @@ export async function getShoeById(id: string): Promise<Shoe | undefined> {
     } catch (error) {
         console.error(`Failed to fetch shoe with ID ${id}:`, error);
         throw new Error(`Failed to fetch shoe with ID ${id}.`);
+    }
+}
+
+/**
+ * Fetches the shoe data based on the provided brand.
+ *
+ * @param {string} brand - The shoe brand.
+ * @returns {Promise<Shoe[]>} A promise that resolves to an array of shoes filtered by brand.
+ */
+export async function getShoesByBrand(brand: string): Promise<Shoe[]> {
+    try {
+        const allShoes = await getAllShoes();
+        const shoesByBrand = allShoes.filter((shoe) => shoe.Brand === brand);
+        return shoesByBrand;
+    } catch (error) {
+        console.error(`Failed to fetch shoes with brand ${brand}:`, error);
+        throw new Error(`Failed to fetch shoes with brand ${brand}.`);
+    }
+}
+
+/**
+ * Fetches the top 5 most expensive shoes.
+ *
+ * @returns {Promise<Shoe[]>} A promise that resolves to an array of the top 5 most expensive shoes.
+ */
+export async function getMostExpensiveShoes(): Promise<Shoe[]> {
+    try {
+        const allShoes = await getAllShoes();
+        return allShoes
+            .sort((a, b) => parseFloat(b.Price) - parseFloat(a.Price))
+            .slice(0, 5);
+    } catch (error) {
+        console.error("Failed to fetch top expensive shoes:", error);
+        throw new Error("Failed to fetch top expensive shoes.");
+    }
+}
+
+/**
+ * Fetches the top 5 least expensive shoes.
+ *
+ * @returns {Promise<Shoe[]>} A promise that resolves to an array of the top 5 least expensive shoes.
+ */
+export async function getLeastExpensiveShoes(): Promise<Shoe[]> {
+    try {
+        const allShoes = await getAllShoes();
+        return allShoes
+            .sort((a, b) => parseFloat(a.Price) - parseFloat(b.Price))
+            .slice(0, 5);
+    } catch (error) {
+        console.error("Failed to fetch top expensive shoes:", error);
+        throw new Error("Failed to fetch top expensive shoes.");
     }
 }
