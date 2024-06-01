@@ -1,4 +1,5 @@
 import Nav from "@/components/Nav/Nav";
+import Footer from "@/components/Footer/Footer";
 
 /**
  * Props for the Layout component.
@@ -18,6 +19,7 @@ export default function Layout({ children }: LayoutProps): JSX.Element {
         <div>
             <Nav />
             <main>{children}</main>
+            <Footer />
         </div>
     );
 }
