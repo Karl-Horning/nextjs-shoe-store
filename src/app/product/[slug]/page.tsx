@@ -1,6 +1,8 @@
-import { IoCartOutline } from "react-icons/io5";
-import { Button, Image } from "@nextui-org/react";
+"use client";
+
+import { Image } from "@nextui-org/react";
 import { getShoeById } from "@/data/data";
+import ShoppingCart from "@/components/ShoppingCart/ShoppingCart";
 
 /**
  * Represents the page properties.
@@ -42,7 +44,12 @@ export default async function page({ params }: PageProps) {
                 />
             </section>
 
-            <form className="container mx-auto">
+            <form
+                className="container mx-auto"
+                onSubmit={(e) => {
+                    e.preventDefault();
+                }}
+            >
                 <div className="lg:flex lg:justify-between">
                     <div id="shoe-info">
                         <p className="mb-5 text-gray-500">{shoe.Brand}</p>
@@ -57,7 +64,7 @@ export default async function page({ params }: PageProps) {
                         <p className="mb-8 font-bold">Select size:</p>
 
                         <div className="mb-10 flex">
-                            {shoe.AvailableSizes.map((size) => (
+                            {shoe.AvailableSizes.map((size, index) => (
                                 <div key={size}>
                                     <input
                                         className="peer top-4 hidden"
@@ -66,27 +73,27 @@ export default async function page({ params }: PageProps) {
                                         required
                                         type="radio"
                                         value={size}
+                                        defaultChecked={index === 0} // Default check the first size
                                     />
                                     <label
                                         className="mr-2 cursor-pointer rounded-lg border border-gray-500 p-4 peer-checked:border-purple-500 peer-checked:bg-purple-100"
                                         htmlFor={size}
+                                        onKeyDown={(e) => {
+                                            if (e.key === "Enter") {
+                                                e.preventDefault();
+                                                document
+                                                    .getElementById(size)
+                                                    ?.click();
+                                            }
+                                        }}
+                                        tabIndex={0}
                                     >
                                         {size}
                                     </label>
                                 </div>
                             ))}
                         </div>
-
-                        <Button
-                            className="mb-20 w-full"
-                            color="secondary"
-                            endContent={<IoCartOutline />}
-                            radius="lg"
-                            size="lg"
-                            type="submit"
-                        >
-                            Add to cart
-                        </Button>
+                        <ShoppingCart />
                     </div>
                 </div>
             </form>
