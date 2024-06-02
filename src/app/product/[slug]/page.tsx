@@ -120,6 +120,7 @@ function ShoeDetails({ shoe }: { shoe: Shoe }) {
                             Brand={shoe.Brand}
                             Model={shoe.Model}
                             Price={shoe.Price}
+                            Image={shoe.Image}
                             Size={selectedSize}
                         />
                     </div>
