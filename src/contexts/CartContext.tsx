@@ -14,13 +14,15 @@ import {
  * @property {string} Brand - The brand of the shoe.
  * @property {string} Model - The model of the shoe.
  * @property {string} Price - The price of the shoe.
+ * @property {string} Image - The image filename of the shoe.
  * @property {string} Size - The size of the shoe.
  */
-interface CartItem {
+export interface CartItem {
     ShoeId: string;
     Brand: string;
     Model: string;
     Price: string;
+    Image: string;
     Size: string;
 }
 

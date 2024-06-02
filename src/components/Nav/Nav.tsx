@@ -34,7 +34,7 @@ export default function Nav() {
                     </Link>
                 </NavbarItem>
                 <NavbarItem>
-                    <Button as={Link} color="secondary" href="#" variant="flat">
+                    <Button as={Link} color="secondary" href="/cart" variant="flat">
                         <IoCartOutline className="text-2xl" />
                     </Button>
                 </NavbarItem>
