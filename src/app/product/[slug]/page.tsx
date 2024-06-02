@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Shoe } from "@/data/data";
 import { Image } from "@nextui-org/react";
 import { getShoeById } from "@/data/data";
-import ShoppingCart from "@/components/ShoppingCart/ShoppingCart";
+import ShoppingBag from "@/components/ShoppingBag/ShoppingBag";
 
 /**
  * Represents the page properties.
@@ -115,7 +115,7 @@ function ShoeDetails({ shoe }: { shoe: Shoe }) {
                                 )
                             )}
                         </div>
-                        <ShoppingCart
+                        <ShoppingBag
                             ShoeId={shoe.ShoeId}
                             Brand={shoe.Brand}
                             Model={shoe.Model}

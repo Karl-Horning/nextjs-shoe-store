@@ -12,20 +12,20 @@ import {
     TableCell,
 } from "@nextui-org/react";
 import { IoBagRemoveOutline, IoBagOutline } from "react-icons/io5";
-import { useCart } from "@/contexts/CartContext";
+import { useBag } from "@/contexts/BagContext";
 
 /**
- * Component that displays the shopping cart.
+ * Component that displays the shopping bag.
  *
- * @returns {JSX.Element} - The rendered shopping cart component.
+ * @returns {JSX.Element} - The rendered shopping bag component.
  */
-export default function ShowShoppingCart() {
-    const { cart, removeFromCart, clearCart } = useCart();
-    const total = cart.reduce((acc, item) => acc + parseFloat(item.Price), 0);
+export default function ShowShoppingBag() {
+    const { bag, removeFromBag, clearBag } = useBag();
+    const total = bag.reduce((acc, item) => acc + parseFloat(item.Price), 0);
 
     return (
         <>
-            <Table aria-label="Shopping cart table" className="mb-10">
+            <Table aria-label="Shopping bag table" className="mb-10">
                 <TableHeader>
                     <TableColumn>Image</TableColumn>
                     <TableColumn>Brand</TableColumn>
@@ -34,13 +34,13 @@ export default function ShowShoppingCart() {
                     <TableColumn>Price</TableColumn>
                     <TableColumn>Actions</TableColumn>
                 </TableHeader>
-                {cart.length === 0 ? (
-                    <TableBody emptyContent={"Your cart is empty"}>
+                {bag.length === 0 ? (
+                    <TableBody emptyContent={"Your bag is empty"}>
                         {[]}
                     </TableBody>
                 ) : (
                     <TableBody>
-                        {cart.map((item) => (
+                        {bag.map((item) => (
                             <TableRow key={item.ShoeId}>
                                 <TableCell>
                                     <Image
@@ -60,7 +60,7 @@ export default function ShowShoppingCart() {
                                         color="warning"
                                         isIconOnly
                                         onClick={() =>
-                                            removeFromCart(item.ShoeId)
+                                            removeFromBag(item.ShoeId)
                                         }
                                         radius="lg"
                                         size="lg"
@@ -100,11 +100,11 @@ export default function ShowShoppingCart() {
                     className="mb-5 w-full md:col-span-1"
                     color="danger"
                     endContent={<IoBagOutline />}
-                    onClick={clearCart}
+                    onClick={clearBag}
                     radius="lg"
                     size="lg"
                 >
-                    Clear cart
+                    Clear bag
                 </Button>
             </div>
         </>

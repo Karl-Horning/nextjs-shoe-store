@@ -9,20 +9,20 @@ import {
     Button,
     Badge,
 } from "@nextui-org/react";
-import { IoCartOutline } from "react-icons/io5";
+import { IoBagOutline } from "react-icons/io5";
 import { PiSneakerFill } from "react-icons/pi";
-import { useCart } from "@/contexts/CartContext";
+import { useBag } from "@/contexts/BagContext";
 
 /**
  * Navigation bar component for the Shoe Store.
  *
  * This component displays the navigation bar with the brand logo,
- * a login link, and a shopping cart button.
+ * a login link, and a shopping bag button.
  *
  * @returns {JSX.Element} The rendered navigation bar component.
  */
 export default function Nav() {
-    const { cart } = useCart();
+    const { bag } = useBag();
 
     return (
         <Navbar maxWidth="xl">
@@ -43,14 +43,14 @@ export default function Nav() {
                     <Button
                         as={Link}
                         color="secondary"
-                        href="/cart"
+                        href="/bag"
                         variant="flat"
                     >
-                        {cart.length === 0 ? (
-                            <IoCartOutline className="text-2xl" />
+                        {bag.length === 0 ? (
+                            <IoBagOutline className="text-2xl" />
                         ) : (
-                            <Badge content={cart.length} color="danger">
-                                <IoCartOutline className="text-2xl" />
+                            <Badge content={bag.length} color="danger">
+                                <IoBagOutline className="text-2xl" />
                             </Badge>
                         )}
                     </Button>

@@ -5,33 +5,33 @@ import {
     IoBagRemoveOutline,
     IoBagOutline,
 } from "react-icons/io5";
-import { useCart, CartItem } from "@/contexts/CartContext";
+import { useBag, BagItem } from "@/contexts/BagContext";
 import { Button, Link } from "@nextui-org/react";
 
 /**
- * ShoppingCart component to display and manage shopping cart actions.
+ * ShoppingBag component to display and manage shopping bag actions.
  *
- * @param {CartItem} props - The cart item properties.
+ * @param {BagItem} props - The bag item properties.
  * @param {string} props.ShoeId - The ID of the shoe.
  * @param {string} props.Brand - The brand of the shoe.
  * @param {string} props.Model - The model of the shoe.
  * @param {string} props.Price - The price of the shoe.
  * @param {string} props.Image - The image of the shoe.
  * @param {string} props.Size - The size of the shoe.
- * @returns {JSX.Element} - The rendered ShoppingCart component.
+ * @returns {JSX.Element} - The rendered ShoppingBag component.
  */
-export default function ShoppingCart({
+export default function ShoppingBag({
     ShoeId,
     Brand,
     Model,
     Price,
     Image,
     Size,
-}: CartItem) {
-    const { cart, addToCart, removeFromCart } = useCart();
+}: BagItem) {
+    const { bag, addToBag, removeFromBag } = useBag();
 
-    const handleAddToCart = () =>
-        addToCart({
+    const handleAddToBag = () =>
+        addToBag({
             ShoeId,
             Brand,
             Model,
@@ -45,37 +45,37 @@ export default function ShoppingCart({
                 className="mb-5 w-full"
                 color="secondary"
                 endContent={<IoBagAddOutline />}
-                onClick={handleAddToCart}
+                onClick={handleAddToBag}
                 radius="lg"
                 size="lg"
                 type="submit"
             >
-                Add to cart
+                Add to bag
             </Button>
             <Button
                 className="mb-5 w-full"
                 color="warning"
                 endContent={<IoBagRemoveOutline />}
-                onClick={() => removeFromCart(ShoeId)}
+                onClick={() => removeFromBag(ShoeId)}
                 radius="lg"
                 size="lg"
                 type="submit"
             >
-                Remove from cart
+                Remove from bag
             </Button>
             <Button
                 as={Link}
                 className="mb-5 w-full"
                 color="secondary"
                 endContent={<IoBagOutline />}
-                href="/cart"
+                href="/bag"
                 radius="lg"
                 size="lg"
                 type="submit"
                 variant="ghost"
             >
-                View {cart.length} {cart.length === 1 ? "item" : "items"} in
-                cart
+                View {bag.length} {bag.length === 1 ? "item" : "items"} in
+                bag
             </Button>
         </div>
     );
