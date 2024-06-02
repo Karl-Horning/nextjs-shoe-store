@@ -89,7 +89,7 @@ export default function ShowShoppingBag() {
                     as={Link}
                     className="mb-5 w-full md:col-span-4"
                     color="secondary"
-                    href="/"
+                    href="/bag/shipping"
                     endContent={<IoBagOutline />}
                     radius="lg"
                     size="lg"
