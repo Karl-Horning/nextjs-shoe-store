@@ -18,7 +18,7 @@ export default function Layout({ children }: LayoutProps): JSX.Element {
     return (
         <div>
             <Nav />
-            <main>{children}</main>
+            <main className="min-h-screen">{children}</main>
             <Footer />
         </div>
     );
