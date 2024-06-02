@@ -8,16 +8,30 @@ import {
 import { useCart } from "@/contexts/CartContext";
 import { Button } from "@nextui-org/react";
 
-export default function ShoppingCart() {
+interface ShoppingCartProps {
+    ShoeId: string;
+    Brand: string;
+    Model: string;
+    Price: string;
+    Size: string;
+}
+
+export default function ShoppingCart({
+    ShoeId,
+    Brand,
+    Model,
+    Price,
+    Size,
+}: ShoppingCartProps) {
     const { cart, addToCart, removeFromCart, clearCart } = useCart();
 
     const handleAddToCart = () =>
         addToCart({
-            ShoeId: "1",
-            Brand: "Nike",
-            Model: "Air Max",
-            Price: "100",
-            Size: "10",
+            ShoeId,
+            Brand,
+            Model,
+            Price,
+            Size,
         });
     return (
         <div>
@@ -36,7 +50,7 @@ export default function ShoppingCart() {
                 className="mb-5 w-full"
                 color="warning"
                 endContent={<IoBagRemoveOutline />}
-                onClick={() => removeFromCart("1")}
+                onClick={() => removeFromCart(ShoeId)}
                 radius="lg"
                 size="lg"
                 type="submit"

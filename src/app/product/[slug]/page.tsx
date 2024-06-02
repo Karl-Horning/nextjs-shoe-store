@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+import { Shoe } from "@/data/data";
 import { Image } from "@nextui-org/react";
 import { getShoeById } from "@/data/data";
 import ShoppingCart from "@/components/ShoppingCart/ShoppingCart";
@@ -31,6 +33,21 @@ export default async function page({ params }: PageProps) {
         return <div>Shoe not found</div>;
     }
 
+    return <ShoeDetails shoe={shoe} />;
+}
+
+/**
+ * ShoeDetails component to manage shoe selection and display details.
+ *
+ * @param {Object} props - The props for the ShoeDetails component.
+ * @param {Shoe} props.shoe - The shoe object containing details of the shoe.
+ * @returns {JSX.Element} - The rendered ShoeDetails component.
+ */
+function ShoeDetails({ shoe }: { shoe: Shoe }) {
+    const [selectedSize, setSelectedSize] = useState<string>(
+        shoe.AvailableSizes[0]
+    );
+
     return (
         <main className="text-gray-800">
             <section id="header-container" className="w-full">
@@ -50,7 +67,7 @@ export default async function page({ params }: PageProps) {
                     e.preventDefault();
                 }}
             >
-                <div className="lg:flex lg:justify-between">
+                <div className="xl:flex xl:justify-between">
                     <div id="shoe-info">
                         <p className="mb-5 text-gray-500">{shoe.Brand}</p>
 
@@ -64,36 +81,47 @@ export default async function page({ params }: PageProps) {
                         <p className="mb-8 font-bold">Select size:</p>
 
                         <div className="mb-10 flex">
-                            {shoe.AvailableSizes.map((size, index) => (
-                                <div key={size}>
-                                    <input
-                                        className="peer top-4 hidden"
-                                        id={size}
-                                        name="shoe-size"
-                                        required
-                                        type="radio"
-                                        value={size}
-                                        defaultChecked={index === 0} // Default check the first size
-                                    />
-                                    <label
-                                        className="mr-2 cursor-pointer rounded-lg border border-gray-500 p-4 peer-checked:border-purple-500 peer-checked:bg-purple-100"
-                                        htmlFor={size}
-                                        onKeyDown={(e) => {
-                                            if (e.key === "Enter") {
-                                                e.preventDefault();
-                                                document
-                                                    .getElementById(size)
-                                                    ?.click();
+                            {shoe.AvailableSizes.map(
+                                (size: string, index: number) => (
+                                    <div key={size}>
+                                        <input
+                                            className="peer top-4 hidden"
+                                            id={size}
+                                            name="shoe-size"
+                                            required
+                                            type="radio"
+                                            value={size}
+                                            defaultChecked={index === 0} // Default check the first size
+                                            onChange={() =>
+                                                setSelectedSize(size)
                                             }
-                                        }}
-                                        tabIndex={0}
-                                    >
-                                        {size}
-                                    </label>
-                                </div>
-                            ))}
+                                        />
+                                        <label
+                                            className="mr-2 cursor-pointer rounded-lg border border-gray-500 p-4 peer-checked:border-purple-500 peer-checked:bg-purple-100"
+                                            htmlFor={size}
+                                            onKeyDown={(e) => {
+                                                if (e.key === "Enter") {
+                                                    e.preventDefault();
+                                                    document
+                                                        .getElementById(size)
+                                                        ?.click();
+                                                }
+                                            }}
+                                            tabIndex={0}
+                                        >
+                                            {size}
+                                        </label>
+                                    </div>
+                                )
+                            )}
                         </div>
-                        <ShoppingCart />
+                        <ShoppingCart
+                            ShoeId={shoe.ShoeId}
+                            Brand={shoe.Brand}
+                            Model={shoe.Model}
+                            Price={shoe.Price}
+                            Size={selectedSize}
+                        />
                     </div>
                 </div>
             </form>
