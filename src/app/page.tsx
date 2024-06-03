@@ -7,7 +7,7 @@ import ShoeCardList from "@/components/ShoeCard/ShoeCardList";
 export default function Home() {
     const theme = useTheme();
     return (
-        <main style={{ color: theme.colors.primary }}>
+        <main>
             <Header />
             <ShoeCardList />
         </main>

@@ -29,7 +29,7 @@ export default function Nav() {
             <Link href="/" className="text-gray-800">
                 <NavbarBrand>
                     <PiSneakerFill />
-                    <p className="ml-1 font-bold text-inherit">Shoe Store</p>
+                    <p className="ml-1 font-bold text-inherit">Sole-Mates</p>
                 </NavbarBrand>
             </Link>
 

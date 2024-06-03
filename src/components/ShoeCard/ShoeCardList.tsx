@@ -120,6 +120,7 @@ export default function ShoeCardList() {
                     label="Filter by brand"
                     onChange={handleBrandSelection}
                     placeholder="All"
+                    size="sm"
                     value={selectedBrand}
                 >
                     {brands.map((brand) => (
