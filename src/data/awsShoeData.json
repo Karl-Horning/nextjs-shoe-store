@@ -1,0 +1,626 @@
+[
+    {
+        "ShoeId": {
+            "S": "ad8bd387-511e-44b4-8c2f-c1902bc8b764"
+        },
+        "Brand": {
+            "S": "Nike"
+        },
+        "Model": {
+            "S": "Pegasus FlyEase By You"
+        },
+        "AvailableSizes": {
+            "NS": [
+                "38",
+                "40",
+                "42",
+                "44",
+                "46"
+            ]
+        },
+        "Price": {
+            "N": "139.99"
+        },
+        "Image": {
+            "S": "nike_pegasus_flyease_by_you.png"
+        }
+    },
+    {
+        "ShoeId": {
+            "S": "923e0c42-c180-4fc0-9796-bcd4902ffdfe"
+        },
+        "Brand": {
+            "S": "New Balance"
+        },
+        "Model": {
+            "S": "RC3"
+        },
+        "AvailableSizes": {
+            "NS": [
+                "38",
+                "40",
+                "42",
+                "44",
+                "46"
+            ]
+        },
+        "Price": {
+            "N": "109.99"
+        },
+        "Image": {
+            "S": "new_balance_rc30.png"
+        }
+    },
+    {
+        "ShoeId": {
+            "S": "981ced76-570c-42f9-bba5-712f84d826a2"
+        },
+        "Brand": {
+            "S": "Under Armour"
+        },
+        "Model": {
+            "S": "Flow Dynamic Training Shoes"
+        },
+        "AvailableSizes": {
+            "NS": [
+                "38",
+                "40",
+                "42",
+                "44",
+                "46"
+            ]
+        },
+        "Price": {
+            "N": "58.99"
+        },
+        "Image": {
+            "S": "under_armour_flow_dynamic_training_shoes.png"
+        }
+    },
+    {
+        "ShoeId": {
+            "S": "1e7e418a-2182-4e85-8eb8-583fc2b7a20a"
+        },
+        "Brand": {
+            "S": "Nike"
+        },
+        "Model": {
+            "S": "Nike Air Max Dn"
+        },
+        "AvailableSizes": {
+            "NS": [
+                "38",
+                "40",
+                "42",
+                "44",
+                "46"
+            ]
+        },
+        "Price": {
+            "N": "154.99"
+        },
+        "Image": {
+            "S": "nike_nike_air_max_dn.jpg"
+        }
+    },
+    {
+        "ShoeId": {
+            "S": "a16eb4e2-127b-4b72-ad93-bd83843f98fe"
+        },
+        "Brand": {
+            "S": "Reebok"
+        },
+        "Model": {
+            "S": "NFX Trainers"
+        },
+        "AvailableSizes": {
+            "NS": [
+                "38",
+                "40",
+                "42",
+                "44",
+                "46"
+            ]
+        },
+        "Price": {
+            "N": "54.99"
+        },
+        "Image": {
+            "S": "reebok_nfx_trainers.png"
+        }
+    },
+    {
+        "ShoeId": {
+            "S": "cc8887a4-752f-4b6d-be70-c4d76d1c096a"
+        },
+        "Brand": {
+            "S": "Superga"
+        },
+        "Model": {
+            "S": "2750 OTU CLASSIC"
+        },
+        "AvailableSizes": {
+            "NS": [
+                "38",
+                "40",
+                "42",
+                "44",
+                "46"
+            ]
+        },
+        "Price": {
+            "N": "51.99"
+        },
+        "Image": {
+            "S": "superga_2750_cotu_classic.jpg"
+        }
+    },
+    {
+        "ShoeId": {
+            "S": "15ba63ce-eb1b-41fe-ab91-69d11806b932"
+        },
+        "Brand": {
+            "S": "Nike"
+        },
+        "Model": {
+            "S": "Metcon 9"
+        },
+        "AvailableSizes": {
+            "NS": [
+                "38",
+                "40",
+                "42",
+                "44",
+                "46"
+            ]
+        },
+        "Price": {
+            "N": "72.99"
+        },
+        "Image": {
+            "S": "nike_metcon_9.png"
+        }
+    },
+    {
+        "ShoeId": {
+            "S": "2c5d51d8-628f-40c5-abb7-c0de9eb49f58"
+        },
+        "Brand": {
+            "S": "On Running"
+        },
+        "Model": {
+            "S": "Cloud 5 Waterproof"
+        },
+        "AvailableSizes": {
+            "NS": [
+                "38",
+                "40",
+                "42",
+                "44",
+                "46"
+            ]
+        },
+        "Price": {
+            "N": "169.99"
+        },
+        "Image": {
+            "S": "on_running_cloud_5_waterproof.png"
+        }
+    },
+    {
+        "ShoeId": {
+            "S": "dbbbcede-f50f-4712-8248-86220df6c63f"
+        },
+        "Brand": {
+            "S": "Adidas"
+        },
+        "Model": {
+            "S": "Originals Stan Smith Recon Leather Sneakers"
+        },
+        "AvailableSizes": {
+            "NS": [
+                "38",
+                "40",
+                "42",
+                "44",
+                "46"
+            ]
+        },
+        "Price": {
+            "N": "84.99"
+        },
+        "Image": {
+            "S": "adidas_originals_stan_smith_recon_leather_sneakers.png"
+        }
+    },
+    {
+        "ShoeId": {
+            "S": "b7d5ae03-8037-432b-a03e-feee491711c3"
+        },
+        "Brand": {
+            "S": "Nike"
+        },
+        "Model": {
+            "S": "Ai Max 95"
+        },
+        "AvailableSizes": {
+            "NS": [
+                "38",
+                "40",
+                "42",
+                "44",
+                "46"
+            ]
+        },
+        "Price": {
+            "N": "174.99"
+        },
+        "Image": {
+            "S": "nike_air_max_95.png"
+        }
+    },
+    {
+        "ShoeId": {
+            "S": "c1d84e20-4375-4517-92d6-255edd51c535"
+        },
+        "Brand": {
+            "S": "Fushiton"
+        },
+        "Model": {
+            "S": "Running Shoes"
+        },
+        "AvailableSizes": {
+            "NS": [
+                "38",
+                "40",
+                "42",
+                "44",
+                "46"
+            ]
+        },
+        "Price": {
+            "N": "30.99"
+        },
+        "Image": {
+            "S": "fushiton_running_shoes.png"
+        }
+    },
+    {
+        "ShoeId": {
+            "S": "abed3e2c-0ffb-4951-b1a6-8d6923b55099"
+        },
+        "Brand": {
+            "S": "Vans"
+        },
+        "Model": {
+            "S": "Old Skool Overt CC Shoes"
+        },
+        "AvailableSizes": {
+            "NS": [
+                "38",
+                "40",
+                "42",
+                "44",
+                "46"
+            ]
+        },
+        "Price": {
+            "N": "39.99"
+        },
+        "Image": {
+            "S": "vans_old_skool_overt_cc_shoes.jpg"
+        }
+    },
+    {
+        "ShoeId": {
+            "S": "56825d15-90da-4dba-ba61-e577128ef711"
+        },
+        "Brand": {
+            "S": "ASICS"
+        },
+        "Model": {
+            "S": "GEL KAYANO 29"
+        },
+        "AvailableSizes": {
+            "NS": [
+                "38",
+                "40",
+                "42",
+                "44",
+                "46"
+            ]
+        },
+        "Price": {
+            "N": "84.99"
+        },
+        "Image": {
+            "S": "asics_gel_kayano_29.png"
+        }
+    },
+    {
+        "ShoeId": {
+            "S": "04c15451-fdfe-441e-bf62-20d36a561050"
+        },
+        "Brand": {
+            "S": "Axel"
+        },
+        "Model": {
+            "S": "Arigato Clean 90"
+        },
+        "AvailableSizes": {
+            "NS": [
+                "38",
+                "40",
+                "42",
+                "44",
+                "46"
+            ]
+        },
+        "Price": {
+            "N": "209.99"
+        },
+        "Image": {
+            "S": "axel_arigato_clean_90.jpg"
+        }
+    },
+    {
+        "ShoeId": {
+            "S": "39113d17-4ca6-4e87-9a0f-67ca5732eec9"
+        },
+        "Brand": {
+            "S": "Balenciaga"
+        },
+        "Model": {
+            "S": "Triple Slow-top sneakers"
+        },
+        "AvailableSizes": {
+            "NS": [
+                "38",
+                "40",
+                "42",
+                "44",
+                "46"
+            ]
+        },
+        "Price": {
+            "N": "517.99"
+        },
+        "Image": {
+            "S": "balenciaga_triple_s_low_top_sneakers.png"
+        }
+    },
+    {
+        "ShoeId": {
+            "S": "24622548-f2e1-4dda-9918-b0b85349bfbd"
+        },
+        "Brand": {
+            "S": "Converse"
+        },
+        "Model": {
+            "S": "Chuck Taylor All Star Classic"
+        },
+        "AvailableSizes": {
+            "NS": [
+                "38",
+                "40",
+                "42",
+                "44",
+                "46"
+            ]
+        },
+        "Price": {
+            "N": "41.99"
+        },
+        "Image": {
+            "S": "converse_chuck_taylor_all_star_classic.png"
+        }
+    },
+    {
+        "ShoeId": {
+            "S": "ee9f0fcb-ce47-462e-88dd-e53398762d23"
+        },
+        "Brand": {
+            "S": "Veja"
+        },
+        "Model": {
+            "S": "Esplar Rubber-Trimmed Leather Sneakers"
+        },
+        "AvailableSizes": {
+            "NS": [
+                "38",
+                "40",
+                "42",
+                "44",
+                "46"
+            ]
+        },
+        "Price": {
+            "N": "119.99"
+        },
+        "Image": {
+            "S": "veja_esplar_rubber_trimmed_leather_sneakers.png"
+        }
+    },
+    {
+        "ShoeId": {
+            "S": "f8bf5aa0-e75d-421f-a442-ba503354afff"
+        },
+        "Brand": {
+            "S": "Gucci"
+        },
+        "Model": {
+            "S": "Ace Embroidered Sneaker"
+        },
+        "AvailableSizes": {
+            "NS": [
+                "38",
+                "40",
+                "42",
+                "44",
+                "46"
+            ]
+        },
+        "Price": {
+            "N": "589.99"
+        },
+        "Image": {
+            "S": "gucci_ace_embroidered_sneaker.png"
+        }
+    },
+    {
+        "ShoeId": {
+            "S": "5bd7490e-5f22-41d3-8bc7-f927efdd1f74"
+        },
+        "Brand": {
+            "S": "Gola"
+        },
+        "Model": {
+            "S": "Harrier Suede Lace Up Trainers"
+        },
+        "AvailableSizes": {
+            "NS": [
+                "38",
+                "40",
+                "42",
+                "44",
+                "46"
+            ]
+        },
+        "Price": {
+            "N": "68.99"
+        },
+        "Image": {
+            "S": "gola_harrier_suede_lace_up_trainers.png"
+        }
+    },
+    {
+        "ShoeId": {
+            "S": "73321c5c-2834-4aa3-9120-990f4027dbdb"
+        },
+        "Brand": {
+            "S": "H&M"
+        },
+        "Model": {
+            "S": "White Trainers"
+        },
+        "AvailableSizes": {
+            "NS": [
+                "38",
+                "40",
+                "42",
+                "44",
+                "46"
+            ]
+        },
+        "Price": {
+            "N": "15.99"
+        },
+        "Image": {
+            "S": "hm_white_trainers.png"
+        }
+    },
+    {
+        "ShoeId": {
+            "S": "f40b0f3a-bd88-43cc-903f-957e28af64c8"
+        },
+        "Brand": {
+            "S": "Adidas"
+        },
+        "Model": {
+            "S": "Gazelle Shoes"
+        },
+        "AvailableSizes": {
+            "NS": [
+                "38",
+                "40",
+                "42",
+                "44",
+                "46"
+            ]
+        },
+        "Price": {
+            "N": "84.99"
+        },
+        "Image": {
+            "S": "adidas_gazelle_shoes.jpg"
+        }
+    },
+    {
+        "ShoeId": {
+            "S": "9da10989-9cbb-4cd4-a21b-e2dd7c7722b5"
+        },
+        "Brand": {
+            "S": "Nike"
+        },
+        "Model": {
+            "S": "Air Jordan 1 Mid SE"
+        },
+        "AvailableSizes": {
+            "NS": [
+                "38",
+                "40",
+                "42",
+                "44",
+                "46"
+            ]
+        },
+        "Price": {
+            "N": "83.99"
+        },
+        "Image": {
+            "S": "nike_air_jordan_1_mid_se.jpg"
+        }
+    },
+    {
+        "ShoeId": {
+            "S": "6f950851-e4a8-4973-8bd1-245418dde82f"
+        },
+        "Brand": {
+            "S": "Acne Studios"
+        },
+        "Model": {
+            "S": "ACNE STUDIOS"
+        },
+        "AvailableSizes": {
+            "NS": [
+                "38",
+                "40",
+                "42",
+                "44",
+                "46"
+            ]
+        },
+        "Price": {
+            "N": "389.99"
+        },
+        "Image": {
+            "S": "acne_studios_acne_studios.png"
+        }
+    },
+    {
+        "ShoeId": {
+            "S": "26a9a917-969d-4327-9289-bb6a149cfdd7"
+        },
+        "Brand": {
+            "S": "New Balance"
+        },
+        "Model": {
+            "S": "New Balance bb550"
+        },
+        "AvailableSizes": {
+            "NS": [
+                "38",
+                "40",
+                "42",
+                "44",
+                "46"
+            ]
+        },
+        "Price": {
+            "N": "79.99"
+        },
+        "Image": {
+            "S": "new_balance_new_balance_bb550.jpg"
+        }
+    }
+]
