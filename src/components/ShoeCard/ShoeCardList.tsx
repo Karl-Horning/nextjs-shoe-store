@@ -1,75 +1,153 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import {
-    getAllBrands,
-    getAllShoes,
-    getShoesByBrand,
-    getLeastExpensiveShoes,
-    getMostExpensiveShoes,
-    Shoe,
-} from "@/data/data";
-import { Select, SelectItem } from "@nextui-org/react";
+import { Shoe } from "@/data/data";
+import { Select, SelectItem, Spinner } from "@nextui-org/react";
 import ShoeCard from "@/components/ShoeCard/ShoeCard";
 import { Button } from "@nextui-org/react";
+import { useQuery, gql } from "@apollo/client";
 
 /**
- * A component that displays a list of shoe cards and filtering options.
+ * Query to fetch all shoes.
+ */
+const GET_ALL_SHOES = gql`
+    query getAllShoes {
+        listShoes {
+            items {
+                ShoeId
+                AvailableSizes
+                Brand
+                Image
+                Model
+                Price
+            }
+        }
+    }
+`;
+
+/**
+ * Query to fetch shoes by brand.
+ */
+const GET_SHOES_BY_BRAND = gql`
+    query getShoesByBrand($brand: String!) {
+        listShoes(filter: { Brand: { eq: $brand } }) {
+            items {
+                ShoeId
+                AvailableSizes
+                Brand
+                Image
+                Model
+                Price
+            }
+        }
+    }
+`;
+
+/**
+ * Get unique brands from a list of shoes.
  *
- * @returns {JSX.Element} - The ShoeCardList component.
+ * @param {Shoe[]} shoes - List of shoes.
+ * @returns {string[]} Unique brands.
+ */
+const getUniqueBrands = (shoes: Shoe[]) =>
+    shoes
+        .map((shoe: Shoe) => shoe.Brand)
+        .filter((brand, index, self) => self.indexOf(brand) === index)
+        .sort();
+
+/**
+ * Component for displaying a list of shoe cards.
+ *
+ * @returns {JSX.Element} JSX element representing the list of shoe cards.
  */
 export default function ShoeCardList() {
+    const {
+        loading: loadingShoes,
+        error: errorShoes,
+        data: dataShoes,
+        refetch: refetchShoes,
+    } = useQuery(GET_ALL_SHOES);
+    const {
+        loading: loadingShoeByBrand,
+        error: errorShoeByBrand,
+        data: dataShoeByBrand,
+        refetch: refetchShoeByBrand,
+    } = useQuery(GET_SHOES_BY_BRAND);
     const [shoes, setShoes] = useState<Shoe[]>([]);
     const [brands, setBrands] = useState<string[]>([]);
     const [selectedBrand, setSelectedBrand] = useState<string>("");
     const [selectKey, setSelectKey] = useState<number>(0);
+    const [loadingButtons, setLoadingButtons] = useState<boolean>(false);
 
     useEffect(() => {
         const fetchData = async () => {
-            const allShoes = await getAllShoes();
-            const allBrands = await getAllBrands();
-            setShoes(allShoes);
-            setBrands(allBrands);
+            if (dataShoes?.listShoes?.items) {
+                const dataShoesItems: Shoe[] = dataShoes.listShoes.items;
+                const uniqueBrands = getUniqueBrands(dataShoesItems);
+
+                setBrands(uniqueBrands);
+                setShoes(dataShoesItems);
+            }
         };
 
         fetchData();
-    }, []);
+    }, [dataShoes]);
 
+    /**
+     * Handles button click events.
+     *
+     * @param {React.MouseEvent<HTMLButtonElement>} e - Button click event.
+     */
     const handleButtonClick = async (
         e: React.MouseEvent<HTMLButtonElement>
     ) => {
         const buttonId = e.currentTarget.id;
 
-        let shoesFilter: Shoe[] = [];
+        let result;
         switch (buttonId) {
             case "all-shoes-btn":
-                shoesFilter = await getAllShoes();
+                result = await refetchShoes();
+                setShoes(result.data.listShoes.items);
                 break;
             case "popular-btn":
-                shoesFilter = await getLeastExpensiveShoes();
+                result = await refetchShoes();
+                const leastExpensiveShoes = [...result.data.listShoes.items]
+                    .sort((a, b) => a.Price - b.Price)
+                    .splice(0, 5);
+                setShoes(leastExpensiveShoes);
                 break;
             case "featured-btn":
-                shoesFilter = await getMostExpensiveShoes();
+                result = await refetchShoes();
+                const mostExpensiveShoes = [...result.data.listShoes.items]
+                    .sort((a, b) => b.Price - a.Price)
+                    .splice(0, 5);
+                setShoes(mostExpensiveShoes);
                 break;
             default:
                 break;
         }
 
         setSelectedBrand("");
-        setShoes(shoesFilter);
-
-        // Increment the select key to force re-render of the Select component
+        setLoadingButtons(false);
         setSelectKey((prevKey) => prevKey + 1);
     };
 
+    /**
+     * Handles brand selection from the select dropdown.
+     *
+     * @param {React.ChangeEvent<HTMLSelectElement>} event - Change event from the select dropdown.
+     */
     const handleBrandSelection: React.ChangeEventHandler<
         HTMLSelectElement
     > = async (event) => {
         const selectedValue = event.target.value;
         setSelectedBrand(selectedValue);
 
-        const shoesFilter: Shoe[] = await getShoesByBrand(selectedValue);
-        setShoes(shoesFilter);
+        const result = await refetchShoeByBrand({ brand: selectedValue });
+
+        if (result.data.listShoes?.items) {
+            setShoes(result.data.listShoes.items);
+        }
     };
 
     return (
@@ -80,6 +158,7 @@ export default function ShoeCardList() {
                         className="mb-5 w-full"
                         color="secondary"
                         id="all-shoes-btn"
+                        isLoading={loadingButtons}
                         onClick={handleButtonClick}
                         size="lg"
                         variant="ghost"
@@ -93,6 +172,7 @@ export default function ShoeCardList() {
                         className="mb-5 w-full"
                         color="secondary"
                         id="popular-btn"
+                        isLoading={loadingButtons}
                         onClick={handleButtonClick}
                         size="lg"
                         variant="light"
@@ -106,6 +186,7 @@ export default function ShoeCardList() {
                         className="mb-5 w-full"
                         color="secondary"
                         id="featured-btn"
+                        isLoading={loadingButtons}
                         onClick={handleButtonClick}
                         size="lg"
                         variant="light"
@@ -116,6 +197,7 @@ export default function ShoeCardList() {
 
                 <Select
                     className="w-full"
+                    isLoading={loadingButtons}
                     key={selectKey}
                     label="Filter by brand"
                     onChange={handleBrandSelection}
@@ -131,19 +213,26 @@ export default function ShoeCardList() {
                 </Select>
             </div>
 
-            <div className="grid justify-items-center gap-4 sm:grid-cols-2 md:grid-cols-3">
-                {shoes.map((shoe) => (
-                    <ShoeCard
-                        key={shoe.ShoeId}
-                        id={shoe.ShoeId}
-                        title={`${shoe.Brand} ${shoe.Model}`}
-                        brand={shoe.Brand}
-                        price={shoe.Price}
-                        imgAlt={`${shoe.Brand} ${shoe.Model}`}
-                        imgSrc={shoe.Image}
-                    />
-                ))}
-            </div>
+            {errorShoes && <p>Error: {errorShoes.message}</p>}
+            {loadingShoes ? (
+                <div className="flex items-center justify-center">
+                    <Spinner color="secondary" size="lg" />
+                </div>
+            ) : (
+                <div className="grid justify-items-center gap-4 sm:grid-cols-2 md:grid-cols-3">
+                    {shoes.map((shoe: Shoe) => (
+                        <ShoeCard
+                            key={shoe.ShoeId}
+                            id={shoe.ShoeId}
+                            title={`${shoe.Brand} ${shoe.Model}`}
+                            brand={shoe.Brand}
+                            price={shoe.Price}
+                            imgAlt={`${shoe.Brand} ${shoe.Model}`}
+                            imgSrc={shoe.Image}
+                        />
+                    ))}
+                </div>
+            )}
         </section>
     );
 }
