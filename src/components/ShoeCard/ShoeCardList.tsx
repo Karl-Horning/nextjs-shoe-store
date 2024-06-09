@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Shoe } from "@/data/data";
+import { Shoe } from "@/types";
 import { Select, SelectItem, Spinner } from "@nextui-org/react";
 import ShoeCard from "@/components/ShoeCard/ShoeCard";
 import { Button } from "@nextui-org/react";
