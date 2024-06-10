@@ -3,8 +3,24 @@
 import { useState } from "react";
 import { Shoe } from "@/data/data";
 import { Image } from "@nextui-org/react";
-import { getShoeById } from "@/data/data";
 import ShoppingBag from "@/components/ShoppingBag/ShoppingBag";
+import { useQuery, gql } from "@apollo/client";
+
+/**
+ * Query to fetch a shoes by its ID.
+ */
+const GET_SHOE = gql`
+    query getShoeById($id: ID!) {
+        getShoe(ShoeId: $id) {
+            AvailableSizes
+            Brand
+            Image
+            Model
+            Price
+            ShoeId
+        }
+    }
+`;
 
 /**
  * Represents the page properties.
@@ -25,13 +41,17 @@ interface PageProps {
  * @param {PageProps} pageProps - The page properties containing the params.
  * @returns {JSX.Element} - The rendered page component.
  */
-export default async function page({ params }: PageProps) {
+export default function Page({ params }: PageProps) {
     const { slug } = params;
-    const shoe = await getShoeById(slug);
+    const { loading, error, data } = useQuery(GET_SHOE, {
+        variables: { id: slug },
+    });
 
-    if (!shoe) {
-        return <div>Shoe not found</div>;
-    }
+    if (loading) return <div>Loading...</div>;
+    if (error) return <div>Error: {error.message}</div>;
+    if (!data?.getShoe) return <div>Shoe not found</div>;
+
+    const shoe = data.getShoe;
 
     return <ShoeDetails shoe={shoe} />;
 }
