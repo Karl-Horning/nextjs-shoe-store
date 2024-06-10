@@ -3,9 +3,33 @@
 import { useState } from "react";
 import { Button, Divider, Select, SelectItem } from "@nextui-org/react";
 import { IoReceiptOutline } from "react-icons/io5";
+import { useMutation, gql } from "@apollo/client";
 import { useBag } from "@/contexts/BagContext";
 import { countries } from "@/data/countries";
 import { Input } from "@nextui-org/input";
+import { v4 as uuidv4 } from "uuid";
+
+/**
+ * Mutation to send order data.
+ */
+const CREATE_ORDER = gql`
+    mutation createOrder($input: CreateOrderInput!) {
+        createOrder(input: $input) {
+            OrderId
+            FullName
+            PhoneNumber
+            EmailAddress
+            StreetAddress
+            AddressLine2
+            CityTown
+            StateProvinceRegion
+            PostCode
+            Country
+            ShoeId
+            Size
+        }
+    }
+`;
 
 /**
  * ShippingForm functional component.
@@ -16,6 +40,7 @@ export default function ShippingForm() {
     const { bag, clearBag } = useBag();
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [formData, setFormData] = useState({
+        orderId: uuidv4(),
         fullName: "",
         email: "",
         phone: "",
@@ -26,6 +51,8 @@ export default function ShippingForm() {
         postalCode: "",
         country: "",
     });
+
+    const [createOrder] = useMutation(CREATE_ORDER);
 
     /**
      * Handles input change event.
@@ -55,16 +82,35 @@ export default function ShippingForm() {
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
+        const shoeIds = bag.map((item) => item.ShoeId);
+        const sizes = bag.map((item) => item.Size);
+
         const orderData = {
-            ...formData,
-            bag,
+            OrderId: formData.orderId,
+            FullName: formData.fullName,
+            EmailAddress: formData.email,
+            PhoneNumber: formData.phone,
+            StreetAddress: formData.streetAddress,
+            AddressLine2: formData.addressLine2,
+            CityTown: formData.city,
+            StateProvinceRegion: formData.state,
+            PostCode: formData.postalCode,
+            Country: formData.country,
+            ShoeId: shoeIds,
+            Size: sizes,
         };
 
-        // TODO: Send orderData to AWS API
-        console.log("Order Data:", orderData);
-
-        setIsSubmitted(true);
-        clearBag();
+        try {
+            await createOrder({
+                variables: {
+                    input: orderData,
+                },
+            });
+            setIsSubmitted(true);
+            clearBag();
+        } catch (error) {
+            console.error("Error creating order:", error);
+        }
     };
 
     return (
