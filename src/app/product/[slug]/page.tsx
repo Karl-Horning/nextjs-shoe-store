@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Shoe } from "@/data/data";
-import { Image } from "@nextui-org/react";
+import { Image, Spinner } from "@nextui-org/react";
 import ShoppingBag from "@/components/ShoppingBag/ShoppingBag";
 import { useQuery, gql } from "@apollo/client";
 
@@ -47,7 +47,12 @@ export default function Page({ params }: PageProps) {
         variables: { id: slug },
     });
 
-    if (loading) return <div>Loading...</div>;
+    if (loading)
+        return (
+            <div className="flex h-screen items-center justify-center">
+                <Spinner color="secondary" size="lg" />
+            </div>
+        );
     if (error) return <div>Error: {error.message}</div>;
     if (!data?.getShoe) return <div>Shoe not found</div>;
 
