@@ -10,7 +10,7 @@ import {
 import { setContext } from "@apollo/client/link/context";
 
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
-const API_URI = process.env.NEXT_PUBLIC_API_URI;
+const API_URI = process.env.NEXT_PUBLIC_API_URL;
 
 /**
  * Creates an Apollo Client instance with the provided API URI and API key.
