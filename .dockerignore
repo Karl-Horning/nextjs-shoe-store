@@ -1,0 +1,10 @@
+# Node packages
+node_modules
+
+# Git files
+.git
+.gitignore
+
+# Environmental variables
+.env
+.env.*
