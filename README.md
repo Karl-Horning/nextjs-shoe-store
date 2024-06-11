@@ -10,6 +10,7 @@
   - [Running Locally](#running-locally)
   - [Docker Deployment](#docker-deployment)
   - [AWS Infrastructure Setup](#aws-infrastructure-setup)
+  - [Database Seeding](#database-seeding)
   - [Example GraphQL Queries and Mutations](#example-graphql-queries-and-mutations)
 - [Technologies](#technologies)
 - [Roadmap](#roadmap)
@@ -88,9 +89,20 @@ This project is a full-stack web application for managing a shoe store. It inclu
    aws cloudformation create-stack --stack-name shoe-store-stack --template-body file://cloudformation-template.yaml --capabilities CAPABILITY_IAM
    ```
 
-### GraphQL Schema
+   **GraphQL Schema Upload**:
 
-Ensure your GraphQL schema is uploaded to an S3 bucket and referenced in the CloudFormation template.
+   Before deploying the CloudFormation stack, ensure your GraphQL schema is uploaded to an S3 bucket and referenced in the CloudFormation template.
+
+### Database Seeding
+
+To seed the database with dummy data, you can use the provided script located at `src/data/seed.py`. Follow these steps:
+
+```bash
+cd src/data
+python seed.py
+```
+
+This will populate your database tables with sample shoe and order data.
 
 ### Example GraphQL Queries and Mutations
 
