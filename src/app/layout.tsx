@@ -4,7 +4,7 @@ import "./globals.css";
 import Layout from "@/components/Layout/Layout";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { BagProvider } from "@/contexts/BagContext";
-import { ApolloWrapper } from "@/app/ApolloWrapper";
+import { ApolloWrapper } from "@/contexts/ApolloWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 
