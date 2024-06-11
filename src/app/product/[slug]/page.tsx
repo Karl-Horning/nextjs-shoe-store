@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Shoe } from "@/data/data";
+import { Shoe } from "@/types";
 import { Image, Spinner } from "@nextui-org/react";
 import ShoppingBag from "@/components/ShoppingBag/ShoppingBag";
 import { useQuery, gql } from "@apollo/client";
